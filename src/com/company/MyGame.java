@@ -49,7 +49,7 @@ public class    MyGame extends Game  {
 
 
     private ArrayList<Enemy> EnemyArray=new ArrayList<>();
-
+    BufferedImage bg;
     public int count=0;
     public int count1=0;
     int seconds = 0;
@@ -67,6 +67,7 @@ public class    MyGame extends Game  {
                 EnemyArray.add(new Enemy((int)(Math.random()*(1150-49)+50),(int)(Math.random()*(750-49)+50),100,100,em));
                 count+=1;
             }
+            bg=ImageIO.read(new File("bg.png"));
         }catch(IOException e){
 
         }
@@ -122,7 +123,7 @@ public class    MyGame extends Game  {
 
     public void draw(Graphics pen) {
 
-
+        pen.drawImage(bg,0,0,1200 , 800,null);
 
 //        one.draw(pen);
         two.draw(pen);
@@ -131,10 +132,10 @@ public class    MyGame extends Game  {
 
         }
 //            if (one.intersection(EnemyArray.get(i)).getWidth() != 0) {
-//                pen.setColor(Color.BLACK);
-//                pen.fillRect(one.intersection(EnemyArray.get(i)).getX(), one.intersection(EnemyArray.get(i)).getY(), one.intersection(EnemyArray.get(i)).getWidth(), one.intersection(EnemyArray.get(i)).getHeight());
-//                two.update();
-//            }
+//            pen.setColor(Color.BLACK);
+//            pen.fillRect(one.intersection(EnemyArray.get(i)).getX(), one.intersection(EnemyArray.get(i)).getY(), one.intersection(EnemyArray.get(i)).getWidth(), one.intersection(EnemyArray.get(i)).getHeight());
+//            two.update();
+//        }
 //        }
 
 

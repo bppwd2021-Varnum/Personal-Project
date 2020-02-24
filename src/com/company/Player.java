@@ -8,8 +8,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Player implements KeyListener {
-    public boolean right, left,up,down;
+public class Player  {
+    public boolean right, left, up, down;
 
 
     private int x;
@@ -25,32 +25,32 @@ public class Player implements KeyListener {
     private int jumpCount;
     public boolean doFall;
     Bullet[] bullet;
-    private ArrayList<Bullet> BulletArray=new ArrayList<>();
+    private ArrayList<Bullet> BulletArray = new ArrayList<>();
     private int q;
     public boolean doTheJump;
     public boolean touchBetweenJumps = true;
     private int speed = 5;
-    private boolean upPressed,downPressed,leftPressed,rightPressed;
+    private boolean upPressed, downPressed, leftPressed, rightPressed;
 
-    public Player(int x1, int y1, int width1, int height1,BufferedImage img) {
+    public Player(int x1, int y1, int width1, int height1, BufferedImage img) {
         x = x1;
         y = y1;
         gravity = 0;
         jumpHeight = 10;
         height = height1;
         width = width1;
-        this.img=img;
+        this.img = img;
         sword = new Sword[1];
-        bullet=new Bullet[1000];
+        bullet = new Bullet[1000];
     }
 
     public void draw(Graphics pen) {
 //        pen.setColor(Color.blue);
 //        pen.fillRect(x, y, width, height);
-        pen.drawImage(img,x,y,width,height,null);
-        for(int i=0;i<bullet.length;i++){
-            if (bullet[i]!=null){
-                bullet[i].draw(pen, Color.blue);
+        pen.drawImage(img, x, y, width, height, null);
+        for (int i = 0; i < bullet.length; i++) {
+            if (bullet[i] != null) {
+                bullet[i].draw(pen, Color.ORANGE);
             }
         }
     }
@@ -67,20 +67,20 @@ public class Player implements KeyListener {
         } else if (y <= 0) {
             y = 1;
         }
-        if(left){
+        if (left) {
             x -= speed;
         }
-        if(right){
+        if (right) {
             x += speed;
         }
-        if(up){
+        if (up) {
             y -= speed;
         }
-        if(down){
+        if (down) {
             y += speed;
         }
-        for(int i=0;i<bullet.length;i++){
-            if (bullet[i]!=null){
+        for (int i = 0; i < bullet.length; i++) {
+            if (bullet[i] != null) {
                 bullet[i].update();
 
 
@@ -98,28 +98,33 @@ public class Player implements KeyListener {
 //        }
 //        y += speed;
     }
-    public int getSpeed(){
+
+    public int getSpeed() {
         return speed;
     }
-    public Bullet[] getBullet(){
-        return(bullet);
+
+    public Bullet[] getBullet() {
+        return (bullet);
     }
+
     public void move(int mx, int my) {
         this.x = mx;
         this.y = my;
     }
-    public void shoot(int mx,int my){
-        int run = x-mx;
-        int rise = y-my;
+
+    public void shoot(int mx, int my) {
+        int run = x - mx;
+        int rise = y - my;
         double angle = Math.atan2(rise, run);
 
 
-        bullet[q]= new Bullet(x+50,y+50,Math.cos(angle)*10, Math.sin(angle)*10);
+        bullet[q] = new Bullet(x + 50, y + 50, Math.cos(angle) * 20, Math.sin(angle) * 20);
 //        bullet.add(new Bullet(x+30, y+30, Math.cos(angle)*10, Math.sin(angle)*10));
 
-        q+=1;
+        q += 1;
 
     }
+
     public int getHeight() {
         return height;
     }
@@ -147,9 +152,15 @@ public class Player implements KeyListener {
     public void setLeft(boolean left) {
         this.left = left;
     }
-    public void setUp(boolean up) { this.up = up; }
-    public void setDown(boolean down) { this.down = down;
+
+    public void setUp(boolean up) {
+        this.up = up;
     }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
     public int moveup(int x1) {
         return y -= x1;
     }
@@ -203,35 +214,5 @@ public class Player implements KeyListener {
     public void setY(int y) {
         this.y = y;
     }
-
-    public void keyTyped(KeyEvent ke) {
-    }
-
-    public void keyPressed(KeyEvent ke) {
-//        if (ke.getKeyCode() == KeyEvent.VK_SPACE){
-//            this.jump();
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_RIGHT){
-//            x+=speed;
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_LEFT){
-//            moveleft(10);
-//
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_DOWN){
-//            movedown(10);
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_UP){
-//            moveup(10);
-//        }
-    }
-
-    public void keyReleased(KeyEvent ke) {
-    }
-
-
-//
-
-
 
 }

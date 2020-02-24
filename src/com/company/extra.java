@@ -33,8 +33,8 @@ public class extra {
 //    }
 //    for(int i=0;i<count1;i++){
 //
-//        BArray[i].draw(pen, Color.black);
-//
+//        BArray[i].draw(pen, Color.blaack);
+// B
 //    }
 ////    inter = one.intersection(eone);
     //     pen.setColor(Color.blue);
