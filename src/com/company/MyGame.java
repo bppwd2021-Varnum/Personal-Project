@@ -39,7 +39,9 @@ public class    MyGame extends Game  {
     public  int y1=(int) ((Math.random()*10)+1);
     Player two ;
     private int health=7;
-
+    private Room room = new Room();
+    private int playerVelocity = 5;
+    private ArrayList<Tile> tileSet = room.getTileSet();
     private int maxH=100;
     private int w;
     private int h;
@@ -58,7 +60,7 @@ public class    MyGame extends Game  {
     int time2 =0;
     private final long createdMillis = System.currentTimeMillis();
 
-    public MyGame() {
+    public MyGame() throws IOException{
         try{
             BufferedImage player=ImageIO.read(new File("wiz.png"));
             two = new Player(x,y,100,100,player);
@@ -83,15 +85,25 @@ public class    MyGame extends Game  {
 
     }
 
+    public int[] startPos(){
+        int startX;
+        int startY;
+        for(int i=0;i<tileSet.size();i++){
+            if(tileSet.get(i) instanceof Start){
+                startX=((Start) tileSet.get(i)).getStartLocation()[0];
+                startY=((Start) tileSet.get(i)).getStartLocation()[1];
+                return new int[]{startX,startY};
+            }
+        }return new int[]{100,100};
+    }
+    public void update() throws IOException{
 
-    public void update() {
-
-        for(int i=0;i<count;i++){
-            EnemyArray.get(i).move();
-        }
-        for(int i=0;i<count;i++){
-            EnemyArray.get(i).move();
-        }
+//        for(int i=0;i<count;i++){
+//            EnemyArray.get(i).move();
+//        }
+//        for(int i=0;i<count;i++){
+//            EnemyArray.get(i).move();
+//        }
 
 
         for(int i=0;i<count;i++) {
@@ -118,11 +130,75 @@ public class    MyGame extends Game  {
             System.exit(0);
         }
 //    System.out.println(two.getX()+":X  "+two.getY()+":Y  ");
+//        tileSet = room.getTileSet();
+        if (health <= 0) {
+            System.exit(0);
+        }
+//        for (int i = 0; i < tileSet.size(); i++) {
+//            if (tileSet.get(i) instanceof Wall || (tileSet.get(i) instanceof Door && !(two.getHasKey()))) {
+//                if (tileSet.get(i).collideDown(two))
+//                    two.setY(two.getY() - playerVelocity);
+////                two.doFall = false;
+//                if (tileSet.get(i).collideUp(two))
+//                    two.setY(two.getY() + playerVelocity);
+//
+//                if (tileSet.get(i).collideLeft(two))
+//                    two.setX(two.getX() + playerVelocity);
+//                if (tileSet.get(i).collideRight(two))
+//                    two.setX(two.getX() - playerVelocity);
+//            } else if (tileSet.get(i) instanceof Key) {
+//                if (tileSet.get(i).collideLeft(two) || tileSet.get(i).collideRight(two) || tileSet.get(i).collideUp(two) || tileSet.get(i).collideDown(two)) {
+//                    tileSet.add(i + 1, new Air(tileSet.get(i).getX(), tileSet.get(i).getY(), 25, 25));
+//                    tileSet.remove(i);
+//                    two.setHasKey(true);
+//                }
+//            } else if (tileSet.get(i) instanceof Door) {
+//                if (two.getHasKey() && (tileSet.get(i).collideLeft(two) || tileSet.get(i).collideRight(two) || tileSet.get(i).collideUp(two) || tileSet.get(i).collideDown(two))) {
+//                    for (int door = 0; door < tileSet.size(); door++) {
+//                        if (tileSet.get(door) instanceof Door) {
+//                            tileSet.add(door + 1, new Air(tileSet.get(door).getX(), tileSet.get(door).getY(), 25, 25));
+//                            tileSet.remove(door);
+//                        }
+//                    }
+//                }
+//            } else if (tileSet.get(i) instanceof Lava) {
+//                if (tileSet.get(i).collideLeft(two) || tileSet.get(i).collideRight(two) || tileSet.get(i).collideUp(two) || tileSet.get(i).collideDown(two)) {
+//                    room.clear();
+//                    room.fillMap();
+//                    two.setHasKey(false);
+//                    for (int start = 0; start < tileSet.size(); start++) {
+//                        if (tileSet.get(start) instanceof Start) {
+//                            two.setX(((Start) tileSet.get(start)).getStartLocation()[0]);
+//                            two.setY(((Start) tileSet.get(start)).getStartLocation()[1]);
+//                        }
+//                    }
+//                }
+//            } else if (tileSet.get(i) instanceof Exit) {
+//                if (tileSet.get(i).collideLeft(two) || tileSet.get(i).collideRight(two) || tileSet.get(i).collideUp(two) || tileSet.get(i).collideDown(two)) {
+//                    tileSet.remove(i);
+//                    room.nextLevel();
+//                    room.clear();
+//                    room.fillMap();
+//                    two.setHasKey(false);
+//                    for (int start = 0; start < tileSet.size(); start++) {
+//                        if (tileSet.get(start) instanceof Start) {
+//                            two.setX(((Start) tileSet.get(start)).getStartLocation()[0]);
+//                            two.setY(((Start) tileSet.get(start)).getStartLocation()[1]);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+
+
+
+
     }
 
     public void draw(Graphics pen) {
 
-
+//        room.draw(pen);
 
 //        one.draw(pen);
         two.draw(pen);
@@ -254,7 +330,7 @@ public class    MyGame extends Game  {
 
     //Launches the Game
 
-    public static void main(String[] args) { new MyGame().start(TITLE, SCREEN_WIDTH,SCREEN_HEIGHT);
+    public static void main(String[] args) throws IOException { new MyGame().start(TITLE, SCREEN_WIDTH,SCREEN_HEIGHT);
 
 
 

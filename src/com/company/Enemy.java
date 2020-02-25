@@ -37,7 +37,7 @@ public class Enemy {
 
 
     }
-    public void move() {
+    /*public void move() {
         x+=xr;
         y+=yr;
         if(x >1150 || x<0  ) {
@@ -48,6 +48,9 @@ public class Enemy {
             yr=yr*-1;
         }
 
+    }*/
+    public void follow(){
+        if(x!=twp)
     }
     public boolean update(Player rect) {
         return(true);

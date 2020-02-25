@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Room {
     private String[][] roomData;
     private int count = 0;
-    private int roomNum = 3;
+    private int roomNum = 1;
     private File csvFile = new File("../room" + roomNum + ".csv");
     private BufferedReader csvReader;
     private ArrayList<Tile> tileSet = new ArrayList<>();
@@ -25,7 +25,7 @@ public class Room {
     private String line;
 
     public Room() throws IOException {
-        roomData=new String[25][25];
+        roomData=new String[35][35];
         fillMap();
     }
     public void fillMap() throws IOException {
@@ -33,7 +33,7 @@ public class Room {
         LevelMaker maker=new LevelMaker();
         maker.randomizeMap();
         String[][] randomMap=maker.getMap();
-        roomData=new String[25][25];
+        roomData=new String[35][35];
         tileSet = new ArrayList<>();
         csvReader = new BufferedReader(new FileReader(csvFile));
         while ((line = csvReader.readLine()) != null && roomData != null) {

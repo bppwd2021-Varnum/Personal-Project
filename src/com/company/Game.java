@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -32,41 +33,25 @@ public abstract class Game implements KeyListener, MouseListener
 
 
 
-    protected void start(String title, int width, int height)
+    protected void start(String title, int width, int height)throws IOException
 
     {
 
-        this.game = (MyGame)this;
-
+        this.game = (MyGame) this;
+//        Player playerTest = new Player(0,0,0,0);
         running = true;
-
         frame = new JFrame(title);
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         gamePanel = new GamePanel();
-
         frame.getContentPane().add(BorderLayout.CENTER, gamePanel);
-
         frame.setResizable(false);
-
         frame.setSize(width, height);
-
-//        frame.setLocationByPlatform(true);
-        frame.setLocation(0, 0);
-
+        frame.setLocation(100,100);
         frame.setVisible(true);
-
         frame.addKeyListener(this);
-
         frame.addMouseListener(this);
-
-//        Cursor matt = Toolkit.getDefaultToolkit().createCustomCursor(new BufferedImage(3,3,BufferedImage.TYPE_INT_ARGB),new Point(0,0),"");
-//
-//        frame.getContentPane().setCursor(matt);
-
+//        frame.addKeyListener(playerTest);
         run();
-
     }
 
 
@@ -87,7 +72,7 @@ public abstract class Game implements KeyListener, MouseListener
 
 
 
-    private void run()
+    private void run()throws IOException
 
     {
 

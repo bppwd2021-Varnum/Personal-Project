@@ -12,7 +12,7 @@ public class LevelMaker{
     // 2 door
     // 96 wall
     public LevelMaker(){
-        map=new String[25][25];
+        map=new String[35][35];
         randomTileChooser=new String[]{"a","w","l"};
         assetOrder=new String[]{"s","e","k"};
     }public String[][] getMap(){
