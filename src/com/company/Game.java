@@ -1,20 +1,20 @@
 package com.company;
 
-        import java.awt.BorderLayout;
-        import java.awt.Cursor;
+import java.awt.BorderLayout;
+import java.awt.Cursor;
 
-        import java.awt.Graphics;
-        import java.awt.Point;
-        import java.awt.Toolkit;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Toolkit;
 
-        import java.awt.event.KeyListener;
+import java.awt.event.KeyListener;
 
-        import java.awt.event.MouseListener;
-        import java.awt.image.BufferedImage;
+import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
-        import javax.swing.JFrame;
+import javax.swing.JFrame;
 
-        import javax.swing.JPanel;
+import javax.swing.JPanel;
 
 
 

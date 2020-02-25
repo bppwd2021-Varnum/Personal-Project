@@ -49,7 +49,7 @@ public class    MyGame extends Game  {
 
 
     private ArrayList<Enemy> EnemyArray=new ArrayList<>();
-    BufferedImage bg;
+
     public int count=0;
     public int count1=0;
     int seconds = 0;
@@ -60,14 +60,13 @@ public class    MyGame extends Game  {
 
     public MyGame() {
         try{
-            BufferedImage player=ImageIO.read(new File("Tyrone.png"));
+            BufferedImage player=ImageIO.read(new File("wiz.png"));
             two = new Player(x,y,100,100,player);
             BufferedImage em=ImageIO.read(new File("girl.png"));
             for (int i = 0; i < 5; i++) {
-                EnemyArray.add(new Enemy((int)(Math.random()*(1150-49)+50),(int)(Math.random()*(750-49)+50),100,100,em));
+                EnemyArray.add(new Enemy((int)(Math.random()*(1150-49)+50),(int)(Math.random()*(750-49)+50),50,50,em));
                 count+=1;
             }
-            bg=ImageIO.read(new File("bg.png"));
         }catch(IOException e){
 
         }
@@ -123,7 +122,7 @@ public class    MyGame extends Game  {
 
     public void draw(Graphics pen) {
 
-        pen.drawImage(bg,0,0,1200 , 800,null);
+
 
 //        one.draw(pen);
         two.draw(pen);
@@ -132,10 +131,10 @@ public class    MyGame extends Game  {
 
         }
 //            if (one.intersection(EnemyArray.get(i)).getWidth() != 0) {
-//            pen.setColor(Color.BLACK);
-//            pen.fillRect(one.intersection(EnemyArray.get(i)).getX(), one.intersection(EnemyArray.get(i)).getY(), one.intersection(EnemyArray.get(i)).getWidth(), one.intersection(EnemyArray.get(i)).getHeight());
-//            two.update();
-//        }
+//                pen.setColor(Color.BLACK);
+//                pen.fillRect(one.intersection(EnemyArray.get(i)).getX(), one.intersection(EnemyArray.get(i)).getY(), one.intersection(EnemyArray.get(i)).getWidth(), one.intersection(EnemyArray.get(i)).getHeight());
+//                two.update();
+//            }
 //        }
 
 
