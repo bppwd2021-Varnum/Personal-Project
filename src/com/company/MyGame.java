@@ -98,9 +98,9 @@ public class    MyGame extends Game  {
     }
     public void update() throws IOException{
 
-//        for(int i=0;i<count;i++){
-//            EnemyArray.get(i).move();
-//        }
+        for(int i=0;i<count;i++){
+            EnemyArray.get(i).follow(two.getX(),two.getY());
+        }
 //        for(int i=0;i<count;i++){
 //            EnemyArray.get(i).move();
 //        }
@@ -134,6 +134,8 @@ public class    MyGame extends Game  {
         if (health <= 0) {
             System.exit(0);
         }
+
+
 //        for (int i = 0; i < tileSet.size(); i++) {
 //            if (tileSet.get(i) instanceof Wall || (tileSet.get(i) instanceof Door && !(two.getHasKey()))) {
 //                if (tileSet.get(i).collideDown(two))

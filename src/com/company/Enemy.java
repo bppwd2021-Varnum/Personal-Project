@@ -49,8 +49,20 @@ public class Enemy {
         }
 
     }*/
-    public void follow(){
-        if(x!=twp)
+    public void follow(int px,int py){
+        if(x<px){
+            x+=px;
+        }
+        else if(x>px){
+            x-=px;
+        }
+        if(y<py){
+            y+=py;
+        }
+        else if(y>py){
+            y-=py;
+        }
+
     }
     public boolean update(Player rect) {
         return(true);
