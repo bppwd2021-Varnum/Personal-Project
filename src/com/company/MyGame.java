@@ -55,6 +55,7 @@ public class    MyGame extends Game  {
     public int count=0;
     public int count1=0;
     int seconds = 0;
+    BufferedImage bg;
     boolean timesup = true;
     int time=(int) System.currentTimeMillis();
     int time2 =0;
@@ -62,8 +63,9 @@ public class    MyGame extends Game  {
 
     public MyGame() throws IOException{
         try{
+             bg=ImageIO.read(new File("dung.png"));
             BufferedImage player=ImageIO.read(new File("wiz.png"));
-            two = new Player(x,y,100,100,player);
+            two = new Player(x,y,75,75,player);
             BufferedImage em=ImageIO.read(new File("girl.png"));
             for (int i = 0; i < 5; i++) {
                 EnemyArray.add(new Enemy((int)(Math.random()*(1150-49)+50),(int)(Math.random()*(750-49)+50),50,50,em));
@@ -100,6 +102,7 @@ public class    MyGame extends Game  {
 
         for(int i=0;i<count;i++){
             EnemyArray.get(i).follow(two.getX(),two.getY());
+            EnemyArray.get(i).update();
         }
 //        for(int i=0;i<count;i++){
 //            EnemyArray.get(i).move();
@@ -200,7 +203,7 @@ public class    MyGame extends Game  {
 
     public void draw(Graphics pen) {
 
-//        room.draw(pen);
+        pen.drawImage(bg,0,0,1200 , 800,null);
 
 //        one.draw(pen);
         two.draw(pen);

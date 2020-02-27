@@ -28,7 +28,7 @@ public class Player implements KeyListener {
     private int q;
     public boolean doTheJump;
     public boolean touchBetweenJumps = true;
-    private int speed = 5;
+    private int speed = 3;
     private boolean upPressed,downPressed,leftPressed,rightPressed;
 
     public Player(int x1, int y1, int width1, int height1,BufferedImage img) {
@@ -55,16 +55,16 @@ public class Player implements KeyListener {
     }
 
     public void update() {
-        if (x >= 1150) {
-            x = 1150;
+        if (x >= 1055) {
+            x = 1055;
 
-        } else if (x <= 0) {
-            x = 1;
+        } else if (x <= 55) {
+            x = 55;
         }
-        if (y >= 750) {
-            y = 750;
-        } else if (y <= 0) {
-            y = 1;
+        if (y >= 645) {
+            y = 645;
+        } else if (y <= 55) {
+            y = 55;
         }
         if(left){
             x -= speed;

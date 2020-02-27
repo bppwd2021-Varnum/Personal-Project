@@ -50,25 +50,25 @@ public class Enemy {
 
     }*/
     public void follow(int px,int py){
-        if(x<px){
-            x+=px;
-        }
-        else if(x>px){
-            x-=px;
-        }
-        if(y<py){
-            y+=py;
-        }
-        else if(y>py){
-            y-=py;
-        }
+        int run = x-px;
+        int rise = y-py;
+        double angle = Math.atan2(rise, run);
+
+
+
+        xr= (int) (Math.cos(angle)*-3);
+        yr= (int) (Math.sin(angle)*-3);
 
     }
-    public boolean update(Player rect) {
-        return(true);
-
-
+    public void update(){
+        x+=xr;
+        y+=yr;
     }
+//    public boolean update(Player rect) {
+//        return(true);
+
+
+//    }
 
     public int getHeight(){
         return height;
