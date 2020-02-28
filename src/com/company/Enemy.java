@@ -16,8 +16,8 @@ public class Enemy {
     int height;
     //    int xr=(int) ((Math.random()*10)+1);
 //    int yr=(int) ((Math.random()*10)+1);
-    int xr=(3);
-    int yr=(3);
+    int xr=(1);
+    int yr=(1);
     private BufferedImage img;
 
 

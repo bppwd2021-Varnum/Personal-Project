@@ -14,7 +14,7 @@ public class extra {
 //                }
 //           }
 //        }
-//        time2=(int) System.currentTimeMillis();
+//        ;
     //             eone.Enemy(x,y,50,50);
 //             etwo.Enemy(x1,y1,50,50);
 //             ethr.Enemy(x1,y1,50,50);
@@ -93,3 +93,60 @@ public class extra {
 //                }
 //        return newR;
 //    }
+///?/// tile set
+//        for (int i = 0; i < tileSet.size(); i++) {
+//            if (tileSet.get(i) instanceof Wall || (tileSet.get(i) instanceof Door && !(two.getHasKey()))) {
+//                if (tileSet.get(i).collideDown(two))
+//                    two.setY(two.getY() - playerVelocity);
+////                two.doFall = false;
+//                if (tileSet.get(i).collideUp(two))
+//                    two.setY(two.getY() + playerVelocity);
+//
+//                if (tileSet.get(i).collideLeft(two))
+//                    two.setX(two.getX() + playerVelocity);
+//                if (tileSet.get(i).collideRight(two))
+//                    two.setX(two.getX() - playerVelocity);
+//            } else if (tileSet.get(i) instanceof Key) {
+//                if (tileSet.get(i).collideLeft(two) || tileSet.get(i).collideRight(two) || tileSet.get(i).collideUp(two) || tileSet.get(i).collideDown(two)) {
+//                    tileSet.add(i + 1, new Air(tileSet.get(i).getX(), tileSet.get(i).getY(), 25, 25));
+//                    tileSet.remove(i);
+//                    two.setHasKey(true);
+//                }
+//            } else if (tileSet.get(i) instanceof Door) {
+//                if (two.getHasKey() && (tileSet.get(i).collideLeft(two) || tileSet.get(i).collideRight(two) || tileSet.get(i).collideUp(two) || tileSet.get(i).collideDown(two))) {
+//                    for (int door = 0; door < tileSet.size(); door++) {
+//                        if (tileSet.get(door) instanceof Door) {
+//                            tileSet.add(door + 1, new Air(tileSet.get(door).getX(), tileSet.get(door).getY(), 25, 25));
+//                            tileSet.remove(door);
+//                        }
+//                    }
+//                }
+//            } else if (tileSet.get(i) instanceof Lava) {
+//                if (tileSet.get(i).collideLeft(two) || tileSet.get(i).collideRight(two) || tileSet.get(i).collideUp(two) || tileSet.get(i).collideDown(two)) {
+//                    room.clear();
+//                    room.fillMap();
+//                    two.setHasKey(false);
+//                    for (int start = 0; start < tileSet.size(); start++) {
+//                        if (tileSet.get(start) instanceof Start) {
+//                            two.setX(((Start) tileSet.get(start)).getStartLocation()[0]);
+//                            two.setY(((Start) tileSet.get(start)).getStartLocation()[1]);
+//                        }
+//                    }
+//                }
+//            } else if (tileSet.get(i) instanceof Exit) {
+//                if (tileSet.get(i).collideLeft(two) || tileSet.get(i).collideRight(two) || tileSet.get(i).collideUp(two) || tileSet.get(i).collideDown(two)) {
+//                    tileSet.remove(i);
+//                    room.nextLevel();
+//                    room.clear();
+//                    room.fillMap();
+//                    two.setHasKey(false);
+//                    for (int start = 0; start < tileSet.size(); start++) {
+//                        if (tileSet.get(start) instanceof Start) {
+//                            two.setX(((Start) tileSet.get(start)).getStartLocation()[0]);
+//                            two.setY(((Start) tileSet.get(start)).getStartLocation()[1]);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//

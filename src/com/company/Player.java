@@ -185,6 +185,19 @@ public class Player implements KeyListener {
         }
         return (false);
     }
+    public boolean hit(int x1, int y1) {
+        for (int i = 0; i <bullet.length; i++) {
+            if (bullet[i] != null) {
+
+                if (x1 >= bullet[i].getX() && x1 <= bullet[i].getX() + bullet[i].getWidth() && y1 >= bullet[i].getY() && y1 <= bullet[i].getY() + bullet[i].getHeight()) {
+                    bullet[i]=null;
+                    return true;
+
+                }
+            }
+        }
+        return (false);
+    }
 
 
     public void setX(int x) {
@@ -229,7 +242,46 @@ public class Player implements KeyListener {
     }
 
 
-//
+    public boolean shot(Enemy rect) {
+
+
+        int top = rect.getX() + rect.getWidth();
+        int bottom = rect.getY() + rect.getHeight();
+        int endX = 0;
+        int endY = 0;
+        boolean crossed = false;
+        for (int k = 0; k < rect.getWidth() + 1; k++) {
+            for (int l = 0; l < rect.getHeight() + 1; l++) {
+                if (this.hit(rect.getX() + k, rect.getY() + l)) {
+
+                    crossed = true;
+
+                   return(true);
+                }
+            }
+        }
+        return (false);
+    }
+    public boolean touched(Enemy rect) {
+
+
+        int top = rect.getX() + rect.getWidth();
+        int bottom = rect.getY() + rect.getHeight();
+        int endX = 0;
+        int endY = 0;
+        boolean crossed = false;
+        for (int k = 0; k < rect.getWidth() + 1; k++) {
+            for (int l = 0; l < rect.getHeight() + 1; l++) {
+                if (this.contains(rect.getX() + k, rect.getY() + l)) {
+
+                    crossed = true;
+
+                    return(true);
+                }
+            }
+        }
+        return (false);
+    }
 
 
 

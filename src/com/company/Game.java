@@ -46,7 +46,7 @@ public abstract class Game implements KeyListener, MouseListener
         frame.getContentPane().add(BorderLayout.CENTER, gamePanel);
         frame.setResizable(false);
         frame.setSize(width, height);
-        frame.setLocation(100,100);
+        frame.setLocation(0,0);
         frame.setVisible(true);
         frame.addKeyListener(this);
         frame.addMouseListener(this);
