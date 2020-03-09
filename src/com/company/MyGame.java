@@ -56,14 +56,17 @@ public class    MyGame extends Game  {
     public int count1=0;
     int seconds = 0;
     BufferedImage bg;
+    BufferedImage health1;
     boolean timesup = true;
     long time= System.currentTimeMillis();
     int time2 =0;
+
     private final long createdMillis = System.currentTimeMillis();
 
     public MyGame() throws IOException{
         try{
              bg=ImageIO.read(new File("dung.png"));
+            health1=ImageIO.read(new File("full red.png"));
             BufferedImage player=ImageIO.read(new File("wiz.png"));
             two = new Player(x,y,75,75,player);
             BufferedImage em=ImageIO.read(new File("girl.png"));
@@ -121,19 +124,21 @@ public class    MyGame extends Game  {
                     break;
                 }
             }
-            System.out.println(health);
         for (int i = 0; i < count; i++) {
 
-            if(two.contains(EnemyArray.get(i).x,EnemyArray.get(i).y)==true){
-                time= System.currentTimeMillis();
-                if(System.currentTimeMillis()-time<100){
-                    health-=1;
-                }
+            if(System.currentTimeMillis()-time>800){
 
+                if(two.contains(EnemyArray.get(i).x,EnemyArray.get(i).y)==true) {
+                    System.out.println("Health: " + health);
+                time = System.currentTimeMillis();
+                health -= 1;
+
+            }
 
                 break;
             }
         }
+
 
 
 //        if (time2-time>15000){
@@ -153,9 +158,7 @@ public class    MyGame extends Game  {
         }
 //    System.out.println(two.getX()+":X  "+two.getY()+":Y  ");
 //        tileSet = room.getTileSet();
-        if (health <= 0) {
-            System.exit(0);
-        }
+
 
 
 
@@ -168,7 +171,7 @@ public class    MyGame extends Game  {
     public void draw(Graphics pen) {
 
         pen.drawImage(bg,0,0,1200 , 800,null);
-
+        pen.drawImage(health1,15,15, health*50, 50,null);
 //        one.draw(pen);
         two.draw(pen);
 
