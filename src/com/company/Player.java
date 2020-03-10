@@ -164,7 +164,12 @@ public class Player implements KeyListener {
     public void jump() {
         doTheJump = true;
     }
-
+    public int run(boolean run) {
+        if(run==true) {
+            return x += this.getSpeed() + 10;
+        }
+        return(x+=this.getSpeed());
+    }
     public int moveright(int x1) {
         return x += x1;
     }

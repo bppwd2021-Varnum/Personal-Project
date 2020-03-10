@@ -39,6 +39,7 @@ public class    MyGame extends Game  {
     public  int y1=(int) ((Math.random()*10)+1);
     Player two ;
     private int health=7;
+    private int stam=7;
     private Room room = new Room();
     private int playerVelocity = 5;
     private ArrayList<Tile> tileSet = room.getTileSet();
@@ -57,8 +58,11 @@ public class    MyGame extends Game  {
     int seconds = 0;
     BufferedImage bg;
     BufferedImage health1;
+    BufferedImage stam1;
+    BufferedImage grey;
     boolean timesup = true;
     long time= System.currentTimeMillis();
+    long time1= System.currentTimeMillis();
     int time2 =0;
 
     private final long createdMillis = System.currentTimeMillis();
@@ -66,7 +70,9 @@ public class    MyGame extends Game  {
     public MyGame() throws IOException{
         try{
              bg=ImageIO.read(new File("dung.png"));
-            health1=ImageIO.read(new File("full red.png"));
+            health1=ImageIO.read(new File("health_bar.png"));
+            stam1=ImageIO.read(new File("stam_bar.png"));
+            grey=ImageIO.read(new File("grey_bar.png"));
             BufferedImage player=ImageIO.read(new File("wiz.png"));
             two = new Player(x,y,75,75,player);
             BufferedImage em=ImageIO.read(new File("girl.png"));
@@ -129,7 +135,7 @@ public class    MyGame extends Game  {
             if(System.currentTimeMillis()-time>800){
 
                 if(two.contains(EnemyArray.get(i).x,EnemyArray.get(i).y)==true) {
-                    System.out.println("Health: " + health);
+//                    System.out.println("Health: " + health);
                 time = System.currentTimeMillis();
                 health -= 1;
 
@@ -171,7 +177,10 @@ public class    MyGame extends Game  {
     public void draw(Graphics pen) {
 
         pen.drawImage(bg,0,0,1200 , 800,null);
+        pen.drawImage(grey,15,15, 350, 50,null);
         pen.drawImage(health1,15,15, health*50, 50,null);
+        pen.drawImage(grey,815,15, 350, 50,null);
+        pen.drawImage(stam1,815,15, stam*50, 50,null);
 //        one.draw(pen);
         two.draw(pen);
 
@@ -254,6 +263,20 @@ public class    MyGame extends Game  {
         if (ke.getKeyCode() == KeyEvent.VK_ESCAPE){
             System.exit(0);
         }
+        if (ke.getKeyCode() == KeyEvent.VK_SHIFT){
+            time1 = System.currentTimeMillis();
+
+            if(System.currentTimeMillis()-time1<900) {
+                if(stam!=0) {
+                    two.run(true);
+                    stam--;
+                }
+
+
+
+            }
+
+        }
 
     }
     public void keyReleased(KeyEvent ke) {
@@ -270,6 +293,7 @@ public class    MyGame extends Game  {
         if (ke.getKeyCode() == KeyEvent.VK_W){
             two.setUp(false);
         }
+
 
     }
 
