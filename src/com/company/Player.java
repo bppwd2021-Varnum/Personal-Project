@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Player implements KeyListener {
+public class Player  {
     public boolean right, left,up,down;
 
 
@@ -28,7 +28,8 @@ public class Player implements KeyListener {
     private int q;
     public boolean doTheJump;
     public boolean touchBetweenJumps = true;
-    private int speed = 3;
+    private int xv = 0;
+    private int yv = 0;
     private boolean upPressed,downPressed,leftPressed,rightPressed;
 
     public Player(int x1, int y1, int width1, int height1,BufferedImage img) {
@@ -67,17 +68,32 @@ public class Player implements KeyListener {
             y = 55;
         }
         if(left){
-            x -= speed;
+            xv=-3;
         }
-        if(right){
-            x += speed;
+
+
+        else if(right){
+            xv=3;
         }
+        else {
+            xv=0;
+        }
+
         if(up){
-            y -= speed;
+            yv=-3;
         }
-        if(down){
-            y += speed;
+
+        else if(down){
+            yv=3;
         }
+        else {
+            yv=0;
+        }
+
+        x+=xv;
+        System.out.println("X: " + x);
+        System.out.println("XV: " + xv);
+        y+=yv;
         for(int i=0;i<bullet.length;i++){
             if (bullet[i]!=null){
                 bullet[i].update();
@@ -98,7 +114,7 @@ public class Player implements KeyListener {
 //        y += speed;
     }
     public int getSpeed(){
-        return speed;
+        return xv;
     }
     public Bullet[] getBullet(){
         return(bullet);
@@ -166,17 +182,13 @@ public class Player implements KeyListener {
     }
     public int run(boolean run) {
         if(run==true) {
-            return x += this.getSpeed() + 10;
+            System.out.println("spped * extra : " + (this.getSpeed()*2) + " And X is: " + x);
+            return x += (this.getSpeed() * 2);
+
         }
         return(x+=this.getSpeed());
     }
-    public int moveright(int x1) {
-        return x += x1;
-    }
 
-    public int moveleft(int x1) {
-        return x -= x1;
-    }
 
     @Override
     public String toString() {
@@ -221,35 +233,7 @@ public class Player implements KeyListener {
         this.y = y;
     }
 
-    public void keyTyped(KeyEvent ke) {
-    }
-
-    public void keyPressed(KeyEvent ke) {
-//        if (ke.getKeyCode() == KeyEvent.VK_SPACE){
-//            this.jump();
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_RIGHT){
-//            x+=speed;
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_LEFT){
-//            moveleft(10);
-//
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_DOWN){
-//            movedown(10);
-//        }
-//        if (ke.getKeyCode() == KeyEvent.VK_UP){
-//            moveup(10);
-//        }
-    }
-
-    public void keyReleased(KeyEvent ke) {
-    }
-
-
     public boolean shot(Enemy rect) {
-
-
         int top = rect.getX() + rect.getWidth();
         int bottom = rect.getY() + rect.getHeight();
         int endX = 0;

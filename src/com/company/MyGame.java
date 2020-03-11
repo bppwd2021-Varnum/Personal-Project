@@ -39,7 +39,7 @@ public class    MyGame extends Game  {
     public  int y1=(int) ((Math.random()*10)+1);
     Player two ;
     private int health=7;
-    private int stam=7;
+    private int stam=14;
     private Room room = new Room();
     private int playerVelocity = 5;
     private ArrayList<Tile> tileSet = room.getTileSet();
@@ -60,6 +60,7 @@ public class    MyGame extends Game  {
     BufferedImage health1;
     BufferedImage stam1;
     BufferedImage grey;
+    BufferedImage key;
     boolean timesup = true;
     long time= System.currentTimeMillis();
     long time1= System.currentTimeMillis();
@@ -76,37 +77,22 @@ public class    MyGame extends Game  {
             BufferedImage player=ImageIO.read(new File("wiz.png"));
             two = new Player(x,y,75,75,player);
             BufferedImage em=ImageIO.read(new File("girl.png"));
-            for (int i = 0; i < 2; i++) {
+            key=ImageIO.read(new File("key.png"));
+            for (int i = 0; i < 3; i++) {
                 EnemyArray.add(new Enemy((int)(Math.random()*(1150-49)+50),(int)(Math.random()*(750-49)+50),50,50,em));
                 count+=1;
+
             }
+
         }catch(IOException e){
 
         }
 
 //        one = new Player(x,y,100,100);
 
-
-
-
-
-
-
-
-
     }
 
-    public int[] startPos(){
-        int startX;
-        int startY;
-        for(int i=0;i<tileSet.size();i++){
-            if(tileSet.get(i) instanceof Start){
-                startX=((Start) tileSet.get(i)).getStartLocation()[0];
-                startY=((Start) tileSet.get(i)).getStartLocation()[1];
-                return new int[]{startX,startY};
-            }
-        }return new int[]{100,100};
-    }
+
     public void update() throws IOException{
 
         for(int i=0;i<count;i++){
@@ -180,10 +166,12 @@ public class    MyGame extends Game  {
         pen.drawImage(grey,15,15, 350, 50,null);
         pen.drawImage(health1,15,15, health*50, 50,null);
         pen.drawImage(grey,815,15, 350, 50,null);
-        pen.drawImage(stam1,815,15, stam*50, 50,null);
+        pen.drawImage(stam1,815,15, stam*25, 50,null);
 //        one.draw(pen);
         two.draw(pen);
-
+        if(count==0){
+            pen.drawImage(key,580,400,50 , 50,null);
+        }
         for(int i=0;i<count;i++) {
             EnemyArray.get(i).draw(pen);
 
@@ -262,6 +250,9 @@ public class    MyGame extends Game  {
         }
         if (ke.getKeyCode() == KeyEvent.VK_ESCAPE){
             System.exit(0);
+        }
+        if (ke.getKeyCode() == KeyEvent.VK_E){
+            System.out.println("x is :"+two.getX());
         }
         if (ke.getKeyCode() == KeyEvent.VK_SHIFT){
             time1 = System.currentTimeMillis();
