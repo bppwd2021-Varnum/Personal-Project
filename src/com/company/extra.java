@@ -150,3 +150,50 @@ public class extra {
 //            }
 //        }
 //
+//
+//        if(x>=1083) {
+//            x=1083;
+//
+//        }
+//
+//        else if(x<=0) {
+//            x=1;
+//
+//        }
+//        if(y >=660) {
+//            y=660;
+//
+//        }
+//        else if(y<=0){
+//            y=1;
+//        }
+//
+//
+//        one.move(mX,mY);
+//    public int getAgeInSeconds() {
+//        long nowMillis = System.currentTimeMillis();
+//        return (int)((nowMillis - this.createdMillis) / 1000);
+//    }
+//            if (two.intersection(EnemyArray.get(i))==true) {
+//                for(int i=0;i<1;i++) {
+//                    EnemyArray.get(i).remove();
+//
+//                }
+//
+//                two.update();
+//            }
+//        if (time2-time>15000){
+//            for (int i = count; i<count+5; i++) {
+//                EnemyArray.add(new Enemy((int)(Math.random()*(1150-49)+50),(int)(Math.random()*(750-49)+50),50,50,em));
+//
+//            }
+//            count+=5;
+//            time=(int) System.currentTimeMillis();
+//        }
+//        for(int i=0;i<count;i++){
+//            EnemyArray.get(i).move();
+//        }
+
+
+//        for(int i=0;i<count;i++) {
+//            getBullet;

@@ -91,8 +91,8 @@ public class Player  {
         }
 
         x+=xv;
-        System.out.println("X: " + x);
-        System.out.println("XV: " + xv);
+//        System.out.println("X: " + x);
+//        System.out.println("XV: " + xv);
         y+=yv;
         for(int i=0;i<bullet.length;i++){
             if (bullet[i]!=null){
@@ -182,7 +182,7 @@ public class Player  {
     }
     public int run(boolean run) {
         if(run==true) {
-            System.out.println("spped * extra : " + (this.getSpeed()*2) + " And X is: " + x);
+//            System.out.println("spped * extra : " + (this.getSpeed()*2) + " And X is: " + x);
             return x += (this.getSpeed() * 2);
 
         }

@@ -64,7 +64,9 @@ public class    MyGame extends Game  {
     boolean timesup = true;
     long time= System.currentTimeMillis();
     long time1= System.currentTimeMillis();
+    long Regtime= System.currentTimeMillis();
     int time2 =0;
+    boolean keyVisble=true;
 
     private final long createdMillis = System.currentTimeMillis();
 
@@ -88,59 +90,53 @@ public class    MyGame extends Game  {
 
         }
 
-//        one = new Player(x,y,100,100);
 
     }
 
+    public void update() throws IOException {
 
-    public void update() throws IOException{
-
-        for(int i=0;i<count;i++){
-            EnemyArray.get(i).follow(two.getX(),two.getY());
+        for (int i = 0; i < count; i++) {
+            EnemyArray.get(i).follow(two.getX(), two.getY());
             EnemyArray.get(i).update();
         }
-//        for(int i=0;i<count;i++){
-//            EnemyArray.get(i).move();
-//        }
 
 
-//        for(int i=0;i<count;i++) {
-//            getBullet;
-
-            for (int i = 0; i < count; i++) {
-
-                if(two.shot(EnemyArray.get(i))==true){
-
-                    EnemyArray.remove(EnemyArray.get(i));
-                    count-=1;
-                    break;
-                }
-            }
         for (int i = 0; i < count; i++) {
 
-            if(System.currentTimeMillis()-time>800){
+            if (two.shot(EnemyArray.get(i)) == true) {
 
-                if(two.contains(EnemyArray.get(i).x,EnemyArray.get(i).y)==true) {
-//                    System.out.println("Health: " + health);
-                time = System.currentTimeMillis();
-                health -= 1;
-
-            }
-
+                EnemyArray.remove(EnemyArray.get(i));
+                count -= 1;
                 break;
             }
         }
+        for (int i = 0; i < count; i++) {
+
+            if (System.currentTimeMillis() - time > 800) {
+
+                if (two.contains(EnemyArray.get(i).x, EnemyArray.get(i).y) == true) {
+//                    System.out.println("Health: " + health);
+                    time = System.currentTimeMillis();
+                    health -= 1;
+
+                }
 
 
+                break;
+            }
 
-//        if (time2-time>15000){
-//            for (int i = count; i<count+5; i++) {
-//                EnemyArray.add(new Enemy((int)(Math.random()*(1150-49)+50),(int)(Math.random()*(750-49)+50),50,50,em));
-//
+        }
+//        for (int i = 0; i < count; i++) {
+//            if (two.contains(EnemyArray.get(i).x, EnemyArray.get(i).y) == false) {
+//                Regtime = System.currentTimeMillis();
+//                break;
 //            }
-//            count+=5;
-//            time=(int) System.currentTimeMillis();
 //        }
+//        if (health < 7 && System.currentTimeMillis() - Regtime > 500) {
+//            health += 1;
+//                }
+
+
 
         two.update();
 
@@ -149,90 +145,51 @@ public class    MyGame extends Game  {
             System.exit(0);
         }
 //    System.out.println(two.getX()+":X  "+two.getY()+":Y  ");
-//        tileSet = room.getTileSet();
-
-
-
-
-
-
-
-
     }
-
     public void draw(Graphics pen) {
 
         pen.drawImage(bg,0,0,1200 , 800,null);
-        pen.drawImage(grey,15,15, 350, 50,null);
-        pen.drawImage(health1,15,15, health*50, 50,null);
-        pen.drawImage(grey,815,15, 350, 50,null);
-        pen.drawImage(stam1,815,15, stam*25, 50,null);
+        pen.drawImage(grey,15,15, 350, 25,null);
+        pen.drawImage(health1,15,15, health*50, 25,null);
+        pen.drawImage(grey,815,15, 350, 25,null);
+        pen.drawImage(stam1,815,15, stam*25, 25,null);
 //        one.draw(pen);
         two.draw(pen);
         if(count==0){
-            pen.drawImage(key,580,400,50 , 50,null);
+            Font font = new Font("Verdana", Font.BOLD, 50);
+            pen.setFont(font);
+            pen.setColor(Color.black);
+
+            pen.drawString("Room Cleared",400,400);
+
+            if(keyVisble==true) {
+                pen.drawImage(key, 580, 400, 50, 50, null);
+                if (two.getX() > 540 && two.getX() < 600 && two.getY() > 355 && two.getY() < 400) {
+                    keyVisble=false;
+
+                }
+            }
+            if (health!=7){
+                health+=1;
+            }
+            if (stam!=14){
+                stam+=1;
+            }
         }
         for(int i=0;i<count;i++) {
             EnemyArray.get(i).draw(pen);
 
         }
 
-//            if (two.intersection(EnemyArray.get(i))==true) {
-//                for(int i=0;i<1;i++) {
-//                    EnemyArray.get(i).remove();
-//
-//                }
-//
-//                two.update();
-//            }
-
-
-
-
-
-
 
         mX =(int) MouseInfo.getPointerInfo().getLocation().getX();
         mY = (int)MouseInfo.getPointerInfo().getLocation().getY();
-//
-//        if(x>=1083) {
-//            x=1083;
-//
-//        }
-//
-//        else if(x<=0) {
-//            x=1;
-//
-//        }
-//        if(y >=660) {
-//            y=660;
-//
-//        }
-//        else if(y<=0){
-//            y=1;
-//        }
-//
-//
-//        one.move(mX,mY);
-
-
-
     }
-//    public int getAgeInSeconds() {
-//        long nowMillis = System.currentTimeMillis();
-//        return (int)((nowMillis - this.createdMillis) / 1000);
-//    }
-
-
     public void keyTyped(KeyEvent ke) {}
-
-
-
-
-
     public void keyPressed(KeyEvent ke) {
         if (ke.getKeyCode() == KeyEvent.VK_SPACE){
             two.jump();
+            System.out.println("X: "+two.getX()+" Y: "+ two.getY());
         }
         if (ke.getKeyCode() == KeyEvent.VK_D){
             two.setRight(true);
@@ -263,13 +220,15 @@ public class    MyGame extends Game  {
                     stam--;
                 }
 
+                }
+
 
 
             }
 
         }
 
-    }
+
     public void keyReleased(KeyEvent ke) {
         if (ke.getKeyCode() == KeyEvent.VK_D){
             two.setRight(false);
@@ -283,6 +242,9 @@ public class    MyGame extends Game  {
         }
         if (ke.getKeyCode() == KeyEvent.VK_W){
             two.setUp(false);
+        }
+        if (ke.getKeyCode() == KeyEvent.VK_SHIFT) {
+
         }
 
 
